@@ -29,10 +29,24 @@ public class SneakerController {
         return repo.findById(id).orElseThrow();
     }
 
-    // Guardar (crear o actualizar)
+    // Guardar (crear)
     @PostMapping
-    public Sneaker guardar(@RequestBody Sneaker sneaker) {
+    public Sneaker crear(@RequestBody Sneaker sneaker) {
         return repo.save(sneaker);
+    }
+
+    // Actualizar (reemplazar) una zapatilla por id
+    @PutMapping("/{id}")
+    public Sneaker actualizar(@PathVariable Long id, @RequestBody Sneaker data) {
+        Sneaker existing = repo.findById(id).orElseThrow();
+        existing.setMarca(data.getMarca());
+        existing.setModelo(data.getModelo());
+        existing.setTalla(data.getTalla());
+        existing.setColor(data.getColor());
+        existing.setPrecio(data.getPrecio());
+        existing.setStock(data.getStock());
+        existing.setImage(data.getImage()); // guardar URL de imagen
+        return repo.save(existing);
     }
 
     // Eliminar
@@ -41,7 +55,7 @@ public class SneakerController {
         repo.deleteById(id);
     }
 
-    // Actualizar solo el stock
+    // Actualizar solo el stock (opcional)
     @PatchMapping("/{id}/stock")
     public Sneaker actualizarStock(@PathVariable Long id, @RequestParam Integer cantidad) {
         Sneaker sneaker = repo.findById(id).orElseThrow();
@@ -49,4 +63,3 @@ public class SneakerController {
         return repo.save(sneaker);
     }
 }
-

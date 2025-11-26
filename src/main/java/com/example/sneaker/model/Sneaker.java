@@ -18,6 +18,9 @@ public class Sneaker {
     private Double precio;
     private Integer stock;
 
+    // Nueva propiedad para URL de imagen
+    private String image;
+
     // id
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -45,5 +48,8 @@ public class Sneaker {
     // stock
     public Integer getStock() { return stock; }
     public void setStock(Integer stock) { this.stock = stock; }
-}
 
+    // image (URL)
+    public String getImage() { return image; }
+    public void setImage(String image) { this.image = image; }
+}
