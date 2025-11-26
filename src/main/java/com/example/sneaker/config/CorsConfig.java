@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry){
                 registry.addMapping("/**")
-                        .allowedOrigins("https://sneakerstore-chi.vercel.app") // o el dominio de tu frontend
+                        .allowedOrigins("https://sneakerstore-chi.vercel.app", "http://localhost:3000") // o el dominio de tu frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")
                         .allowedHeaders("*");
             }
