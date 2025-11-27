@@ -55,4 +55,5 @@ public class Sneaker {
 
     public List<Double> getTallas() { return tallas; }
     public void setTallas(List<Double> tallas) { this.tallas = tallas; }
+    //listaparatallasnuevas
 }
