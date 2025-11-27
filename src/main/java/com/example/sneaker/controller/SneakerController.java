@@ -29,9 +29,13 @@ public class SneakerController {
         return repo.findById(id).orElseThrow();
     }
 
-    // Guardar (crear)
+    // Crear (acepta tallas en el body)
     @PostMapping
     public Sneaker crear(@RequestBody Sneaker sneaker) {
+        // Si llegara sólo sneaker.getTalla() y no hay tallas, podrías opcionalmente inicializar
+        if ((sneaker.getTallas() == null || sneaker.getTallas().isEmpty()) && sneaker.getTalla() != null) {
+            sneaker.setTallas(List.of(sneaker.getTalla()));
+        }
         return repo.save(sneaker);
     }
 
@@ -45,7 +49,9 @@ public class SneakerController {
         existing.setColor(data.getColor());
         existing.setPrecio(data.getPrecio());
         existing.setStock(data.getStock());
-        existing.setImage(data.getImage()); // guardar URL de imagen
+        existing.setImage(data.getImage());
+        // Crucial: asignar la lista de tallas enviada
+        existing.setTallas(data.getTallas());
         return repo.save(existing);
     }
 

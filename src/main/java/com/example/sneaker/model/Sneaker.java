@@ -16,7 +16,8 @@ public class Sneaker {
 
     private String marca;
     private String modelo;
-    private Double talla; // compatibilidad opcional
+    // campo individual (mantener por compatibilidad si ya existe)
+    private Double talla;
     private String color;
     private Double precio;
     private Integer stock;
@@ -28,7 +29,8 @@ public class Sneaker {
     @ElementCollection
     private List<Double> tallas = new ArrayList<>();
 
-    // getters y setters...
+    // Getters / Setters
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -55,5 +57,4 @@ public class Sneaker {
 
     public List<Double> getTallas() { return tallas; }
     public void setTallas(List<Double> tallas) { this.tallas = tallas; }
-    //listaparatallasnuevas
 }
