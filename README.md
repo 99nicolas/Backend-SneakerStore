@@ -35,11 +35,24 @@ Ejemplo de cuerpo:
 }
 ```
 
+## Configuración
+
+Las credenciales de la base de datos **no** se guardan en el repositorio. Se leen de variables de entorno:
+
+| Variable | Ejemplo | Obligatoria |
+|---|---|---|
+| `DB_URL` | `jdbc:postgresql://host:5432/basedatos` | Sí |
+| `DB_USERNAME` | `usuario` | Sí |
+| `DB_PASSWORD` | `********` | Sí |
+| `PORT` | `8080` | No (8080 por defecto) |
+| `SHOW_SQL` | `true` | No (false por defecto) |
+
 ## Ejecutar
 
-Configura la conexión a PostgreSQL en `src/main/resources/application.properties` (`spring.datasource.url`, `username`, `password`) y luego:
-
 ```bash
+export DB_URL=jdbc:postgresql://host:5432/basedatos
+export DB_USERNAME=usuario
+export DB_PASSWORD=tu_contraseña
 ./mvnw spring-boot:run
 ```
 
@@ -47,7 +60,11 @@ Con Docker:
 
 ```bash
 docker build -t sneaker-backend .
-docker run -p 8080:8080 sneaker-backend
+docker run -p 8080:8080 \
+  -e DB_URL=jdbc:postgresql://host:5432/basedatos \
+  -e DB_USERNAME=usuario \
+  -e DB_PASSWORD=tu_contraseña \
+  sneaker-backend
 ```
 
 La API queda en `http://localhost:8080`.
